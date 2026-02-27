@@ -1,16 +1,12 @@
 # EHR Analysis in MIMIC-III  
-SQL Exposure–Outcome Analysis & Regex-Based Medication Extraction
-
+SQL Exposure–Outcome Analysis
 ---
 
 ## Project Overview
 
 This project analyzes electronic health record (EHR) data from the MIMIC-III database.
 
-The notebook contains two main components:
-
-1. SQL-based exposure–outcome analysis using microbiology and diagnosis data  
-2. Regular expression (regex) extraction of admission medications from clinical discharge summaries and comparison with the structured PRESCRIPTIONS table
+SQL-based exposure–outcome analysis using microbiology and diagnosis data  
 
 No patient-level data is included in this repository.
 
@@ -25,7 +21,7 @@ All analyses were conducted on structured and unstructured EHR tables within MIM
 
 ---
 
-# Part 1: Exposure to Microorganism vs Primary Diagnosis
+## Exposure to Microorganism vs Primary Diagnosis
 
 ## Objective
 
@@ -69,64 +65,10 @@ The analysis is purely SQL-based and does not involve predictive modeling.
 
 ---
 
-# Part 2: Medication Extraction from Clinical Notes
-
-## Objective
-
-To extract medications administered at admission from unstructured discharge summaries and compare them with structured prescription records.
-
----
-
-## Clinical Text Selection
-
-- Table: `NOTEEVENTS`
-- Category: `Discharge summary`
-- Example case:
-  - `SUBJECT_ID = 13702`
-  - `CHARTDATE = 2118-06-14`
-
----
-
-## Regex Extraction
-
-A regular expression approach was used to extract:
-
-- Medication name
-- Dosage
-- Units
-
-The extracted values were stored in a DataFrame with columns:
-
-- `medication`
-- `dosage`
-- `units`
-
-This dataset is referred to as `medications_admission`.
-
----
-
-## Comparison with PRESCRIPTIONS Table
-
-The extracted medications were compared against the structured `PRESCRIPTIONS` table.
-
-Observed limitations include:
-
-- Medication naming inconsistencies
-- Formatting variability in clinical text
-- Cases where regex extraction failed
-- Differences between documented medications and structured prescription records
-
-This comparison highlights discrepancies between structured and unstructured EHR data.
-
----
-
 ## Methods Used
 
 - SQL cohort construction
 - Odds ratio computation
-- Clinical text parsing with regular expressions
-- DataFrame construction and comparison
-- Manual validation of extraction results
 
 ---
 
@@ -136,8 +78,6 @@ This comparison highlights discrepancies between structured and unstructured EHR
 - Epidemiological association analysis
 - Odds ratio interpretation
 - Handling structured and unstructured EHR data
-- Regex-based information extraction
-- Validation against structured medical records
 
 ---
 
